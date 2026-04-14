@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
 
   const [formState, setFormState] = useState({
     name: '',
@@ -100,11 +99,11 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-24 md:py-32 bg-secondary"
+      className="relative py-24 md:py-32 bg-secondary overflow-hidden"
     >
       {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <h1 className="font-display text-[25vw] leading-none text-outline opacity-5 whitespace-nowrap">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <h1 className="font-display text-[25vw] text-outline opacity-5 whitespace-nowrap">
           TALK
         </h1>
       </div>
@@ -116,15 +115,17 @@ export default function Contact() {
             Get In Touch
           </p>
 
-          <h2 className="contact-title font-display text-6xl md:text-8xl leading-[0.85]">
+          <h2 className="contact-title font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85]">
             LET'S <span className="text-outline">TALK</span>
           </h2>
         </div>
 
+        {/* Content */}
         <div className="grid lg:grid-cols-2 gap-20 max-w-7xl mx-auto">
+          
           {/* LEFT */}
           <div className="space-y-12">
-            <p className="contact-item text-xl text-muted leading-relaxed">
+            <p className="contact-item text-xl md:text-2xl text-muted leading-relaxed font-light">
               Have a project in mind? Let's create something extraordinary together.
             </p>
 
@@ -137,19 +138,23 @@ export default function Contact() {
                   whileHover={{ x: 10 }}
                   className="contact-item flex items-center gap-6 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition">
-                    <item.icon className="text-primary w-6 h-6" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-500">
+                    <item.icon className="text-primary w-6 h-6 md:w-7 md:h-7" />
                   </div>
 
                   <div>
-                    <p className="text-xs text-muted uppercase">{item.label}</p>
-                    <p className="font-medium text-lg">{item.value}</p>
+                    <p className="text-xs md:text-sm text-muted uppercase tracking-widest mb-1">
+                      {item.label}
+                    </p>
+                    <p className="font-medium text-lg md:text-xl">
+                      {item.value}
+                    </p>
                   </div>
                 </motion.a>
               ))}
             </div>
 
-            {/* Social */}
+            {/* Social Links */}
             <div className="contact-item flex gap-5">
               {[
                 { icon: Github, href: 'https://github.com/Vijayku6367' },
@@ -161,10 +166,11 @@ export default function Contact() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -5 }}
-                  className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-primary transition"
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-500"
                 >
-                  <social.icon className="w-6 h-6" />
+                  <social.icon className="w-6 h-6 md:w-7 md:h-7" />
                 </motion.a>
               ))}
             </div>
@@ -172,48 +178,64 @@ export default function Contact() {
 
           {/* RIGHT FORM */}
           <form onSubmit={handleSubmit} className="contact-item space-y-10">
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={formState.name}
-              onChange={(e) =>
-                setFormState({ ...formState, name: e.target.value })
-              }
-              className="w-full py-4 bg-transparent border-b border-white/20"
-              required
-            />
+            <div className="space-y-12">
 
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={formState.email}
-              onChange={(e) =>
-                setFormState({ ...formState, email: e.target.value })
-              }
-              className="w-full py-4 bg-transparent border-b border-white/20"
-              required
-            />
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={formState.name}
+                onChange={(e) =>
+                  setFormState({ ...formState, name: e.target.value })
+                }
+                className="w-full py-5 text-lg md:text-xl bg-transparent border-b border-white/20 focus:border-primary outline-none transition"
+                required
+              />
 
-            <textarea
-              placeholder="Your Message"
-              rows={4}
-              value={formState.message}
-              onChange={(e) =>
-                setFormState({ ...formState, message: e.target.value })
-              }
-              className="w-full py-4 bg-transparent border-b border-white/20"
-              required
-            />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={formState.email}
+                onChange={(e) =>
+                  setFormState({ ...formState, email: e.target.value })
+                }
+                className="w-full py-5 text-lg md:text-xl bg-transparent border-b border-white/20 focus:border-primary outline-none transition"
+                required
+              />
+
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                value={formState.message}
+                onChange={(e) =>
+                  setFormState({ ...formState, message: e.target.value })
+                }
+                className="w-full py-5 text-lg md:text-xl bg-transparent border-b border-white/20 focus:border-primary outline-none resize-none transition"
+                required
+              />
+            </div>
 
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-5 bg-primary rounded-full font-bold flex justify-center items-center gap-3"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-6 bg-primary text-background font-bold rounded-full tracking-widest uppercase text-sm md:text-base flex items-center justify-center gap-4 hover:bg-primary/90 transition-all shadow-lg disabled:opacity-50"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-              <Send size={18} />
+              {isSubmitting ? (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  className="w-6 h-6 border-2 border-background border-t-transparent rounded-full"
+                />
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <Send size={20} />
+                </>
+              )}
             </motion.button>
           </form>
+
         </div>
       </div>
     </section>
