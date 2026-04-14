@@ -99,9 +99,9 @@ export default function Contact() {
 
             <div className="contact-item space-y-8 md:space-y-10">
               {[
-                { icon: Mail, label: 'Email', value: 'vijayeth0@gmail.com' },
-                { icon: Phone, label: 'Phone', value: '+916367487223' },
-                { icon: MapPin, label: 'Location', value: 'India' },
+                 { icon: '✉️', label: 'Email', value: 'vijayeth0@gmail.com', href: 'mailto:vijayeth0@gmail.com' },
+                { icon: '📞', label: 'Phone', value: '+916367487223', href: 'tel:+916367487223' },
+                { icon: '📍', label: 'Location', value: 'India', href: '#' },
               ].map((item) => (
                 <motion.a
                   key={item.label}
