@@ -52,10 +52,10 @@ export default function About() {
   }, []);
 
   const stats = [
-    { number: '5', suffix: '+', label: 'Projects Completed', icon: '🚀' },
-    { number: '3', suffix: '+', label: 'Years Experience', icon: '💼' },
-    { number: '20', suffix: '+', label: 'Happy Clients', icon: '😊' },
-    { number: '99', suffix: '%', label: 'Client Satisfaction', icon: '⭐' },
+    { number: '5', suffix: '+', label: 'Projects Completed'},
+    { number: '3', suffix: '+', label: 'Years Experience'},
+    { number: '20', suffix: '+', label: 'Happy Clients'},
+    { number: '99', suffix: '%', label: 'Client Satisfaction'},
   ];
 
   return (
