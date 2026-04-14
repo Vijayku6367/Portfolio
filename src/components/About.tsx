@@ -14,7 +14,8 @@ export default function About() {
 
     const ctx = gsap.context(() => {
       const aboutLines = section.querySelectorAll('.about-line');
-      gsap.fromTo(aboutLines, 
+      gsap.fromTo(
+        aboutLines,
         { y: 60, opacity: 0 },
         {
           y: 0,
@@ -25,12 +26,13 @@ export default function About() {
           scrollTrigger: {
             trigger: section,
             start: 'top 80%',
-          }
+          },
         }
       );
 
       const cards = section.querySelectorAll('.stat-card');
-      gsap.fromTo(cards,
+      gsap.fromTo(
+        cards,
         { scale: 0.9, opacity: 0 },
         {
           scale: 1,
@@ -41,13 +43,20 @@ export default function About() {
           scrollTrigger: {
             trigger: cards[0],
             start: 'top 85%',
-          }
+          },
         }
       );
     }, section);
 
     return () => ctx.revert();
   }, []);
+
+  const stats = [
+    { number: '5', suffix: '+', label: 'Projects Completed', icon: '🚀' },
+    { number: '3', suffix: '+', label: 'Years Experience', icon: '💼' },
+    { number: '20', suffix: '+', label: 'Happy Clients', icon: '😊' },
+    { number: '99', suffix: '%', label: 'Client Satisfaction', icon: '⭐' },
+  ];
 
   return (
     <section
@@ -66,9 +75,9 @@ export default function About() {
           </h2>
         </div>
 
-        {/* Main Content Grid */}
+        {/* Main Content */}
         <div className="grid lg:grid-cols-5 gap-16 lg:gap-24 items-center">
-          {/* Left - Text */}
+          {/* Left */}
           <div className="lg:col-span-3 space-y-8 md:space-y-10">
             <p className="about-line text-2xl sm:text-3xl md:text-4xl font-light leading-tight">
               I design and develop{' '}
@@ -79,12 +88,11 @@ export default function About() {
             <p className="about-line text-base md:text-lg text-muted leading-relaxed">
               With over 5 years of experience in full-stack development and UI/UX design,
               I've helped startups and enterprises build products that users love.
-              My approach combines technical excellence with creative problem-solving.
             </p>
 
             <p className="about-line text-base md:text-lg text-muted leading-relaxed">
               When I'm not coding, you'll find me exploring new design trends,
-              contributing to open-source projects, or mentoring aspiring developers.
+              contributing to open-source projects, or mentoring developers.
             </p>
 
             <div className="about-line pt-6">
@@ -93,35 +101,42 @@ export default function About() {
                 whileHover={{ x: 10 }}
                 className="inline-flex items-center gap-4 group"
               >
-                <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">Read Full Story</span>
+                <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
+                  Read Full Story
+                </span>
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
                 </div>
               </motion.a>
             </div>
           </div>
 
-          {/* Right - Cards */}
+          {/* Right Cards */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-6">
-            {[
-              { number: '5', suffix: '+', label: 'Projects Completed'},
-              { number: '3', suffix: '+', label: 'Years Experience'},
-              { number: '20', suffix: '+', label: 'Happy Clients'},
-              { number: '99', suffix: '%', label: 'Client Satisfaction'},
-            ].map((stat, i) => (
+            {stats.map((stat) => (
               <motion.div
                 key={stat.label}
                 whileHover={{ y: -8, scale: 1.05 }}
                 className="stat-card glass rounded-[2rem] p-6 md:p-8 text-center"
               >
-                <span className="text-3xl md:text-4xl mb-4 block">{stat.icon}</span>
+                <span className="text-3xl md:text-4xl mb-4 block">
+                  {stat.icon}
+                </span>
+
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="font-display text-4xl sm:text-5xl md:text-6xl text-primary">
                     {stat.number}
                   </span>
-                  <span className="font-display text-2xl md:text-3xl text-primary">{stat.suffix}</span>
+                  <span className="font-display text-2xl md:text-3xl text-primary">
+                    {stat.suffix}
+                  </span>
                 </div>
-                <p className="text-[10px] md:text-xs text-muted mt-2 uppercase tracking-widest">{stat.label}</p>
+
+                <p className="text-[10px] md:text-xs text-muted mt-2 uppercase tracking-widest">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </div>
