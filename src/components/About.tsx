@@ -52,10 +52,10 @@ export default function About() {
   }, []);
 
   const stats = [
-    { number: '5', suffix: '+', label: 'Projects Completed'},
-    { number: '3', suffix: '+', label: 'Years Experience'},
-    { number: '20', suffix: '+', label: 'Happy Clients'},
-    { number: '99', suffix: '%', label: 'Client Satisfaction'},
+    { number: '5', suffix: '+', label: 'Projects Completed' },
+    { number: '3', suffix: '+', label: 'Years Experience' },
+    { number: '20', suffix: '+', label: 'Happy Clients' },
+    { number: '99', suffix: '%', label: 'Client Satisfaction' },
   ];
 
   return (
@@ -65,7 +65,7 @@ export default function About() {
       className="relative bg-secondary py-24 md:py-32"
     >
       <div className="container">
-        {/* Section Header */}
+        {/* Header */}
         <div className="mb-20 md:mb-28 text-center md:text-left">
           <p className="about-line text-primary font-medium tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
             About Me
@@ -75,9 +75,8 @@ export default function About() {
           </h2>
         </div>
 
-        {/* Main Content */}
+        {/* Content */}
         <div className="grid lg:grid-cols-5 gap-16 lg:gap-24 items-center">
-          {/* Left */}
           <div className="lg:col-span-3 space-y-8 md:space-y-10">
             <p className="about-line text-2xl sm:text-3xl md:text-4xl font-light leading-tight">
               I design and develop{' '}
@@ -94,26 +93,9 @@ export default function About() {
               When I'm not coding, you'll find me exploring new design trends,
               contributing to open-source projects, or mentoring developers.
             </p>
-
-            <div className="about-line pt-6">
-              <motion.a
-                href="#contact"
-                whileHover={{ x: 10 }}
-                className="inline-flex items-center gap-4 group"
-              >
-                <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
-                  Read Full Story
-                </span>
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
-                  <span className="transform group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </div>
-              </motion.a>
-            </div>
           </div>
 
-          {/* Right Cards */}
+          {/* Cards */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-6">
             {stats.map((stat) => (
               <motion.div
@@ -121,10 +103,6 @@ export default function About() {
                 whileHover={{ y: -8, scale: 1.05 }}
                 className="stat-card glass rounded-[2rem] p-6 md:p-8 text-center"
               >
-                <span className="text-3xl md:text-4xl mb-4 block">
-                  {stat.icon}
-                </span>
-
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="font-display text-4xl sm:text-5xl md:text-6xl text-primary">
                     {stat.number}
