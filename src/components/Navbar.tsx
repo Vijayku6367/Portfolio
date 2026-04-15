@@ -57,7 +57,7 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
-              className="font-display text-xl md:text-2xl tracking-tight"
+              className="font-display text-xl md:text-3xl tracking-tight"
               whileHover={{ scale: 1.05 }}
               data-cursor-text="HOME"
             >
