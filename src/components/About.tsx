@@ -85,13 +85,8 @@ export default function About() {
             </p>
 
             <p className="about-line text-base md:text-lg text-muted leading-relaxed">
-              With over 5 years of experience in full-stack development and UI/UX design,
+              With over 3 years of experience in full-stack development and UI/UX design,
               I've helped startups and enterprises build products that users love.
-            </p>
-
-            <p className="about-line text-base md:text-lg text-muted leading-relaxed">
-              When I'm not coding, you'll find me exploring new design trends,
-              contributing to open-source projects, or mentoring developers.
             </p>
           </div>
 
