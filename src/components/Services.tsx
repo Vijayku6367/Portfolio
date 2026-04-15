@@ -202,8 +202,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-20 md:py-28 overflow-hidden"
-     > 
+      className="relative py-20 md:py-28 overflow-hidden"/>
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/70" />
