@@ -10,7 +10,7 @@ const projects = [
     title: 'SaaS Dashboard',
     category: 'Web Application',
     description:
-      'Real-time analytics platform with advanced data visualization and comprehensive reporting tools.',
+      'Real-time analytics platform with advanced data visualization and reporting tools.',
     tech: ['React', 'Node.js', 'D3.js', 'PostgreSQL'],
     color: '#ff3d00',
     image:
@@ -21,7 +21,7 @@ const projects = [
     title: 'E-Commerce Platform',
     category: 'Full Stack',
     description:
-      'High-performance shopping experience with AI-powered recommendations and seamless checkout.',
+      'High-performance shopping experience with AI-powered recommendations.',
     tech: ['Next.js', 'Stripe', 'MongoDB', 'AWS'],
     color: '#00ff88',
     image:
@@ -30,9 +30,9 @@ const projects = [
   {
     id: 3,
     title: 'AI Content Generator',
-    category: 'AI/ML Tool',
+    category: 'AI / ML Tool',
     description:
-      'GPT-powered content creation platform with custom fine-tuning and brand voice adaptation.',
+      'GPT-powered content creation platform with custom brand voice tuning.',
     tech: ['Python', 'FastAPI', 'OpenAI', 'React'],
     color: '#7c3aed',
     image:
@@ -41,9 +41,9 @@ const projects = [
   {
     id: 4,
     title: 'Design System',
-    category: 'UI/UX',
+    category: 'UI / UX',
     description:
-      'Comprehensive component library for enterprise applications with accessibility-first approach.',
+      'Reusable enterprise component system with accessibility-first design.',
     tech: ['Figma', 'Storybook', 'TypeScript', 'CSS'],
     color: '#f59e0b',
     image:
@@ -66,13 +66,13 @@ export default function Projects() {
 
       gsap.fromTo(
         titleLines,
-        { y: 50, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.12,
-          ease: 'power4.out',
+          stagger: 0.1,
+          ease: 'expo.out',
           scrollTrigger: {
             trigger: title,
             start: 'top 85%',
@@ -80,22 +80,34 @@ export default function Projects() {
         }
       );
 
-      gsap.fromTo(
-        '.project-card',
-        { y: 80, opacity: 0, scale: 0.95 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.15,
-          duration: 1,
-          ease: 'power4.out',
+      const cards = gsap.utils.toArray<HTMLElement>('.project-card');
+
+      cards.forEach((card, i) => {
+        if (i === cards.length - 1) return;
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: 'top 12%',
+          pin: true,
+          pinSpacing: false,
+          endTrigger: section,
+          end: 'bottom bottom',
+          invalidateOnRefresh: true,
+        });
+
+        gsap.to(card, {
+          scale: 0.94,
+          opacity: 0.45,
+          filter: 'blur(4px)',
+          ease: 'none',
           scrollTrigger: {
-            trigger: '.projects-grid',
-            start: 'top 85%',
+            trigger: cards[i + 1],
+            start: 'top 78%',
+            end: 'top 12%',
+            scrub: true,
           },
-        }
-      );
+        });
+      });
     }, section);
 
     return () => ctx.revert();
@@ -121,42 +133,42 @@ export default function Projects() {
         </h2>
       </div>
 
-      {/* Grid */}
-      <div className="container projects-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {/* Cards */}
+      <div className="container flex flex-col gap-8 md:gap-10">
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className="project-card relative h-[420px] md:h-[460px] rounded-[2rem] overflow-hidden border border-white/10 bg-background"
+            className="project-card relative w-full h-[420px] md:h-[470px] rounded-[2rem] overflow-hidden border border-white/10 bg-background"
           >
-            {/* Image */}
+            {/* Background */}
             <div
-              className="absolute inset-0 bg-cover bg-center scale-105 hover:scale-110 transition-all duration-700"
+              className="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-105 hover:scale-110"
               style={{
                 backgroundImage: `url(${project.image})`,
               }}
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+              <div className="flex items-center gap-3 mb-4">
                 <span
                   className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: project.color }}
                 />
 
-                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/70">
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/70">
                   {project.category}
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl sm:text-3xl md:text-4xl mb-3">
+              <h3 className="font-display text-3xl md:text-5xl mb-4">
                 {project.title}
               </h3>
 
-              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-5">
+              <p className="text-white/70 text-sm md:text-base max-w-2xl leading-relaxed mb-5">
                 {project.description}
               </p>
 
@@ -164,7 +176,7 @@ export default function Projects() {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1.5 rounded-full text-[10px] md:text-xs uppercase tracking-wider border border-white/10 bg-white/5 text-white/80"
+                    className="px-3 py-1.5 text-[10px] md:text-xs uppercase tracking-widest rounded-full border border-white/10 bg-white/5 text-white/80"
                   >
                     {tech}
                   </span>
@@ -173,8 +185,8 @@ export default function Projects() {
             </div>
 
             {/* Number */}
-            <div className="absolute top-5 right-5 opacity-20">
-              <span className="font-display text-5xl md:text-6xl">
+            <div className="absolute top-5 right-5 md:top-8 md:right-8 opacity-20">
+              <span className="font-display text-5xl md:text-7xl">
                 0{index + 1}
               </span>
             </div>
