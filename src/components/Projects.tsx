@@ -14,7 +14,7 @@ const projects = [
     tech: ['React', 'Node.js', 'D3.js', 'PostgreSQL'],
     color: '#ff3d00',
     image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+      '/Sa.png',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const projects = [
     tech: ['Next.js', 'Stripe', 'MongoDB', 'AWS'],
     color: '#00ff88',
     image:
-      'https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&q=80',
+      'E.png',
   },
   {
     id: 3,
