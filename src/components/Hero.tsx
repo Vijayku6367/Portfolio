@@ -138,25 +138,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Floating Elements */}
-      <div className="floating-element absolute top-[20%] left-[10%] w-16 h-16 md:w-24 md:h-24 animate-float hidden md:block" style={{ zIndex: 5 }}>
-        <div className="w-full h-full rounded-3xl bg-white/5 glass flex items-center justify-center">
-          <span className="text-3xl">💻</span>
-        </div>
-      </div>
-
-      <div className="floating-element absolute top-[30%] right-[12%] w-14 h-14 md:w-20 md:h-20 animate-float-delayed hidden md:block" style={{ zIndex: 5 }}>
-        <div className="w-full h-full rounded-2xl bg-white/5 glass flex items-center justify-center">
-          <span className="text-2xl font-bold text-accent">JS</span>
-        </div>
-      </div>
-
-      <div className="floating-element absolute bottom-[25%] left-[15%] w-12 h-12 md:w-16 md:h-16 animate-float-slow hidden md:block" style={{ zIndex: 5 }}>
-        <div className="w-full h-full rounded-xl bg-white/5 glass flex items-center justify-center">
-          <span className="text-2xl">⚛️</span>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div 
         ref={contentRef}
@@ -178,7 +159,7 @@ export default function Hero() {
           </div>
 
           <div className="mb-8">
-            <p className="hero-stagger text-lg md:text-xl lg:text-2xl text-muted font-light tracking-wide opacity-100">
+            <p className="hero-stagger text-lg md:text-xl lg:text-2xl text-muted font-light tracking-wide opacity-200">
               Full Stack Developer — UI Engineer — Problem Solver
             </p>
           </div>
@@ -243,7 +224,7 @@ export default function Hero() {
                 style={{ transform: 'translateZ(50px)' }}
               >
                 <img
-                  src="/uploads/upload_1.png"
+                  src="/upload_1.png"
                   alt="Vijay"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
