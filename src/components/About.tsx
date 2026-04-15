@@ -79,9 +79,9 @@ export default function About() {
         <div className="grid lg:grid-cols-5 gap-16 lg:gap-24 items-center">
           <div className="lg:col-span-3 space-y-8 md:space-y-10">
             <p className="about-line text-2xl sm:text-3xl md:text-4xl font-light leading-tight">
-              I design and develop{' '}
-              <span className="text-primary font-medium">high-performance</span>{' '}
-              digital products that blend stunning aesthetics with seamless functionality.
+              I Design and Develop{' '}
+              <span className="text-primary font-medium">High-Performance</span>{' '}
+              Digital Products that Blend Stunning Aesthetics with Seamless Functionality.
             </p>
 
             <p className="about-line text-base md:text-lg text-muted leading-relaxed">
