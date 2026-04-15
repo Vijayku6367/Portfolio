@@ -202,11 +202,10 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-20 md:py-28 overflow-hidden"/>
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/70" />
-      </div>
+      className="relative py-20 md:py-28 overflow-hidden"
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/70" />
 
       {/* Section Glow */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-transparent to-black/30" />
