@@ -115,7 +115,7 @@ export default function Hero() {
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
         {/* Slight Dark Overlay */}
-        <div className="absolute inset-0 bg-background/30 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
       {/* Massive Background Text */}
@@ -226,9 +226,9 @@ export default function Hero() {
                 <img
                   src="/upload_1.png"
                   alt="Vijay"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
               </div>
             </motion.div>
           </div>
