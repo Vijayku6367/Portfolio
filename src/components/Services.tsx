@@ -203,19 +203,7 @@ export default function Services() {
       ref={sectionRef}
       id="services"
       className="relative py-20 md:py-28 overflow-hidden"
-    >
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
+     > 
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/70" />
