@@ -103,32 +103,12 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center bg-background pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden"
     >
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-80"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
+    
         {/* Slight Dark Overlay */}
         <div className="absolute inset-0 bg-black/10" />
       </div>
 
-      {/* Massive Background Text */}
-      <div
-        ref={bgTextRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-        style={{ zIndex: 1 }}
-      >
-        <h1 className="font-display text-[25vw] leading-none text-outline opacity-30 whitespace-nowrap">
-          VIJAY
-        </h1>
-      </div>
-
+  
       {/* Ambient Background Glow */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] pointer-events-none"
@@ -159,7 +139,7 @@ export default function Hero() {
           </div>
 
           <div className="mb-8">
-            <p className="hero-stagger text-lg md:text-xl lg:text-2xl text-muted font-light tracking-wide opacity-200">
+            <p className="hero-stagger text-lg md:text-xl lg:text-2xl text-muted font-light tracking-wide opacity-20">
               Full Stack Developer — UI Engineer — Problem Solver
             </p>
           </div>
