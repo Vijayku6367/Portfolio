@@ -25,7 +25,7 @@ const projects = [
     tech: ['Next.js', 'Stripe', 'MongoDB', 'AWS'],
     color: '#00ff88',
     image:
-      '/E.png',
+      '/E.png?v=1',
   },
   {
     id: 3,
