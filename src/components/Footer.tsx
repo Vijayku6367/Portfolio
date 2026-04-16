@@ -50,7 +50,7 @@ export default function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="w-full bg-[#050813] rounded-t-[70px] px-6 pt-14 pb-10"
+        className="max-w-[420px] mx-auto bg-[#050813] rounded-t-[50px] px-5 pt-10 pb-8"
       >
         {/* Top Text */}
         <p className="text-center text-white/90 text-[18px] leading-[1.3] font-medium max-w-[320px] mx-auto">
@@ -59,18 +59,18 @@ export default function Footer() {
         </p>
 
         {/* Heading */}
-        <h2 className="text-center text-white font-bold text-[54px] leading-[0.95] mt-8 tracking-[-2px]">
+        <h2 className="text-center text-white font-bold text-[38px] leading-[0.95] mt-8 tracking-[-2px]">
           Let’s work together
         </h2>
 
         {/* Email */}
         <p className="text-center text-white font-semibold text-[20px] mt-8">
-          vijay.developer@gmail.com
+          vijayeth0@gmail.com
         </p>
 
         {/* Contact Button */}
         <a
-          href="mailto:vijay.developer@gmail.com"
+          href="vijayeth0@gmail.com"
           className="mt-8 w-full h-[74px] bg-[#f4f4f4] rounded-full flex items-center px-6"
         >
           <span className="flex-1 text-center text-[#111111] font-semibold text-[22px]">
@@ -88,7 +88,7 @@ export default function Footer() {
             <a
               key={item.name}
               href={item.href}
-              className="text-white text-[18px] font-medium"
+              className="text-white text-[14px] font-medium"
             >
               {item.name}
             </a>
