@@ -110,7 +110,7 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="w-full h-[62px] bg-[#2d3343] rounded-[20px] flex items-center px-5"
+                className="w-[300px] mx-auto h-[62px] bg-[#2d3343] rounded-[20px] flex items-center px-5"
               >
                 <div className="w-[28px] h-[26px] rounded-lg bg-white flex items-center justify-center text-[#2d3343]">
                   <Icon size={18} />
