@@ -56,13 +56,17 @@ export default function Navbar() {
           >
             {/* Logo */}
             <motion.a
-              href="#"
-              className="font-display text-xl md:text-3xl tracking-tight"
-              whileHover={{ scale: 1.05 }}
-              data-cursor-text="HOME"
-            >
-              VIJAY<span className="text-primary">.</span>
-            </motion.a>
+  href="#"
+  className="flex items-center"
+  whileHover={{ scale: 1.05 }}
+  data-cursor-text="HOME"
+>
+  <img
+    src="/logo.png"
+    alt="Vijay Logo"
+    className="h-10 md:h-12 w-auto object-contain"
+  />
+</motion.a>
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
