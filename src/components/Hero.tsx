@@ -170,7 +170,7 @@ export default function Hero() {
             </motion.a>
 
             <motion.a
-              href="#Footer"
+              href="#footer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-10 py-5 border-2 border-foreground text-foreground font-bold rounded-full tracking-widest uppercase text-xs md:text-sm hover:bg-foreground hover:text-background transition-all"
