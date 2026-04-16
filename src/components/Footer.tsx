@@ -77,7 +77,7 @@ export default function Footer() {
             Contact Me
           </span>
 
-          <span className="w-[20px] h-[200px] rounded-full bg-[#2d3343] flex items-center justify-center text-white">
+          <span className="w-[28px] h-[20px] rounded-full bg-[#2d3343] flex items-center justify-center text-white">
             <ArrowUpRight size={18} strokeWidth={2.4} />
           </span>
         </a>
