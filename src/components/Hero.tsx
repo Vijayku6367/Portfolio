@@ -214,7 +214,7 @@ export default function Hero() {
                 <img
                   src="/upload_1.png"
                   alt="Vijay"
-                  className="w-full h-full object-cover"
+                  className="w-full h-80px object-cover"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
