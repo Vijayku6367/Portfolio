@@ -65,7 +65,7 @@ export default function Navbar() {
               <img
                 src="/logo.png"
                 alt="Vijay Logo"
-                className="h-14 md:h-16 w-auto object-contain"
+                className="h-14 md:h-16 w-auto object-contain brightness-0 contrast-200"
               />
             </motion.a>
 
