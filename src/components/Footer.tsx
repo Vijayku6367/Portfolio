@@ -1,66 +1,89 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'Works', href: '#projects' },
+  { name: 'About', href: '#about' },
+];
 
 const socialLinks = [
-  { name: 'GitHub', icon: Github, href: 'https://github.com/Vijayku6367', label: 'GitHub Profile' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/vijayeth', label: 'LinkedIn Profile' },
-  { name: 'Twitter', icon: Twitter, href: 'https://x.com/Lakieth0', label: 'Twitter Profile' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/Vijayku6367' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/vijayeth' },
+  { name: 'Twitter', icon: Twitter, href: 'https://x.com/Lakieth0' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="py-8 md:py-12 bg-background border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2"
-            >
-              <span className="font-display text-2xl md:text-3xl tracking-tight">VIJAY</span>
-              <span className="text-primary text-2xl md:text-3xl">.</span>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-muted text-sm"
-            >
-              © 2024 All rights reserved.
-            </motion.p>
-          </div>
+    <footer className="px-4 pb-6 pt-0 bg-transparent">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="rounded-[2rem] bg-secondary px-6 py-14 flex flex-col items-center gap-8 max-w-2xl mx-auto"
+      >
+        {/* Top Text */}
+        <p className="text-muted text-sm text-center leading-relaxed">
+          Available for freelance work, contracts, and full time opportunities.
+        </p>
 
-          <div className="flex flex-col items-center gap-6">
-            <div className="flex items-center gap-6">
-              {socialLinks.map((social, i) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ scale: 1.2, color: 'var(--primary)' }}
-                  className="text-muted hover:text-primary transition-colors p-2"
-                >
-                  <social.icon size={24} />
-                </motion.a>
-              ))}
-            </div>
-            <motion.p
+        {/* Big Heading */}
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground text-center leading-tight">
+          Let's work together
+        </h2>
+
+        {/* Email */}
+        <p className="text-foreground font-semibold text-base tracking-wide">
+          vijay.developer@gmail.com
+        </p>
+
+        {/* Contact Me Button */}
+        
+          href="mailto:vijay.developer@gmail.com"
+          className="flex items-center justify-between w-full bg-foreground text-background rounded-full px-6 py-4 font-semibold text-base hover:opacity-90 transition-opacity"
+        >
+          <span className="flex-1 text-center">Contact Me</span>
+          <span className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+            <ArrowUpRight size={18} className="text-foreground" />
+          </span>
+        </a>
+
+        {/* Nav Links */}
+        <div className="flex items-center gap-8 mt-2">
+          {navLinks.map((link) => (
+            
+              key={link.name}
+              href={link.href}
+              className="text-foreground text-sm font-medium hover:text-muted transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Social Cards */}
+        <div className="flex flex-col w-full gap-3">
+          {socialLinks.map((social, i) => (
+            <motion.a
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-muted text-sm flex items-center gap-2"
+              transition={{ delay: i * 0.1 }}
+              className="flex items-center gap-4 bg-card rounded-2xl px-5 py-4 hover:opacity-80 transition-opacity"
             >
-              Made with <span className="text-primary">❤️</span> by Vijay
-            </motion.p>
-          </div>
+              <span className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
+                <social.icon size={20} className="text-foreground" />
+              </span>
+              <span className="flex-1 text-center font-bold text-foreground text-base">
+                {social.name}
+              </span>
+            </motion.a>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
