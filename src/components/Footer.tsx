@@ -65,13 +65,13 @@ export default function Footer() {
 
         {/* Email */}
         <p className="text-center text-white font-semibold text-[16px] mt-6">
-          vijay.developer@gmail.com
+          vijayeth0@gmail.com
         </p>
 
         {/* Contact Button */}
         <a
-          href="mailto:vijay.developer@gmail.com"
-          className="mt-6 w-full h-[58px] bg-[#f4f4f4] rounded-full flex items-center px-5"
+          href="vijayeth0@gmail.com"
+          className="mt-6 w-full h-[40px] bg-[#f4f4f4] rounded-full flex items-center px-5"
         >
           <span className="flex-1 text-center text-[#111111] font-semibold text-[16px]">
             Contact Me
@@ -112,11 +112,11 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className="w-full h-[62px] bg-[#2d3343] rounded-[20px] flex items-center px-5"
               >
-                <div className="w-[34px] h-[34px] rounded-lg bg-white flex items-center justify-center text-[#2d3343]">
+                <div className="w-[28px] h-[26px] rounded-lg bg-white flex items-center justify-center text-[#2d3343]">
                   <Icon size={18} />
                 </div>
 
-                <span className="flex-1 text-center text-white font-semibold text-[16px] pr-6">
+                <span className="flex-1 text-center text-white font-semibold text-[12px] pr-6">
                   {item.name}
                 </span>
               </motion.a>
