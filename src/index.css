@@ -1,25 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
-
 @theme {
-  --color-background: #0a0a0a;
-  --color-foreground: #f5f5f5;
-  --color-primary: #ff3d00;
-  --color-secondary: #1a1a1a;
-  --color-accent: #00ff88;
-  --color-muted: #666666;
-  --color-card: #111111;
-  --color-border: #222222;
+  --color-background: #0a0a0f;
+  --color-foreground: #ffffff;
+  --color-primary: #7b2fff;
+  --color-secondary: #111118;
+  --color-accent: #9d5cff;
+  --color-muted: #b0aac8;
+  --color-card: #1a1a2e;
+  --color-border: #2e2e4a;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
-}
-
-/* Hide default cursor globally */
-*,
-*::before,
-*::after {
-  cursor: none !important;
-  box-sizing: border-box;
 }
 
 /* Base HTML/Body styles */
