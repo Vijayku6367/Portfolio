@@ -151,7 +151,7 @@ export default function Hero() {
             Full Stack Developer — UI Engineer — Problem Solver
           </p>
 
-          <h2 className="hero-stagger font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-12">
+          <h2 className="hero-stagger font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12">
             I Build Scalable
             <br />
             <span className="text-outline-primary">
