@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BubbleMenu from "./BubbleMenu";
+import BubbleMenu from "./BubbleMenu.tsx";
 
 const navItems = [
   {
