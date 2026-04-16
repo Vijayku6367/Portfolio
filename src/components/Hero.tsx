@@ -169,14 +169,18 @@ export default function Hero() {
               View Work
             </motion.a>
 
-            <motion.a
-              href="#footer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 border-2 border-foreground text-foreground font-bold rounded-full tracking-widest uppercase text-xs md:text-sm hover:bg-foreground hover:text-background transition-all"
-            >
-              Hire Me
-            </motion.a>
+          <motion.button
+  onClick={() => {
+    document
+      .getElementById("footer")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="px-10 py-5 border-2 border-foreground text-foreground font-bold rounded-full tracking-widest uppercase text-xs md:text-sm hover:bg-foreground hover:text-background transition-all"
+>
+  Hire Me
+</motion.button>
           </div>
         </div>
 
