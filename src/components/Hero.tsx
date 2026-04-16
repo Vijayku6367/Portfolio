@@ -162,8 +162,8 @@ export default function Hero() {
           <div className="hero-stagger flex flex-wrap justify-center lg:justify-start gap-6">
             <motion.a
               href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 0.95 }}
+              whileTap={{ scale: 0.85 }}
               className="px-10 py-5 bg-primary text-background font-bold rounded-full tracking-widest uppercase text-xs md:text-sm"
             >
               View Work
