@@ -94,18 +94,20 @@ export default function Testimonials() {
   };
 
   const cardVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
+  hidden: {
+    y: 30,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      damping: 12,
+      stiffness: 100,
     },
-  };
-
+  },
+};
   return (
     <section
       ref={sectionRef}
