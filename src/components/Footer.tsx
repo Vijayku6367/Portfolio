@@ -69,18 +69,18 @@ export default function Footer() {
         </p>
 
         {/* Contact Button */}
-        <a
-          href="vijayeth0@gmail.com"
-          className="mt-6 w-full h-[40px] bg-[#f4f4f4] rounded-full flex items-center px-5"
-        >
-          <span className="flex-1 text-center text-[#111111] font-semibold text-[16px]">
-            Contact Me
-          </span>
+<a
+  href="mailto:vijayeth0@gmail.com"
+  className="mt-6 w-full h-[40px] bg-[#f4f4f4] rounded-full flex items-center justify-center gap-2 px-5"
+>
+  <span className="text-[#111111] font-semibold text-[16px]">
+    Contact Me
+  </span>
 
-          <span className="w-[28px] h-[20px] rounded-full bg-[#2d3343] flex items-center justify-center text-white">
-            <ArrowUpRight size={18} strokeWidth={2.4} />
-          </span>
-        </a>
+  <span className="w-[28px] h-[20px] rounded-full bg-[#2d3343] flex items-center justify-center text-white">
+    <ArrowUpRight size={18} strokeWidth={2.4} />
+  </span>
+</a>
 
         {/* Nav Links */}
         <div className="flex justify-center gap-7 mt-10">
