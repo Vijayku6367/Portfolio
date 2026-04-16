@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Quote, Star } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -12,7 +8,7 @@ const testimonials = [
     name: "Sarah Chen",
     role: "CEO, TechStart",
     avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80",
     content:
       "Vijay transformed our vision into reality. His attention to detail and technical expertise are unmatched.",
     rating: 5,
@@ -22,7 +18,7 @@ const testimonials = [
     name: "Marcus Johnson",
     role: "Product Lead, InnovateCo",
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
     content:
       "Working with Vijay was an absolute pleasure. Creative solutions to complex problems, delivered on time.",
     rating: 5,
@@ -32,7 +28,7 @@ const testimonials = [
     name: "Emily Rodriguez",
     role: "Founder, DesignHub",
     avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80",
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80",
     content:
       "Exceptional craftsmanship. He creates user experiences that people love, not just websites.",
     rating: 5,
@@ -40,142 +36,118 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const sectionRef = useRef(null);
-  const marqueeRef = useRef(null);
-  const animationRef = useRef<gsap.core.Tween | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
 
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Title animation
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    let angle = 0;
+    let frame: number;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".testimonials-title",
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.12,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-          },
-        }
-      );
-    }, section);
+    const animate = () => {
+      if (!paused && carouselRef.current) {
+        angle += 0.35;
+        carouselRef.current.style.transform = `rotateY(${angle}deg)`;
+      }
 
-    return () => ctx.revert();
-  }, []);
-
-  // Slider animation
-  useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
-
-    animationRef.current = gsap.to(marquee, {
-      xPercent: -50,
-      duration: 20,
-      ease: "none",
-      repeat: -1,
-    });
-
-    return () => {
-      animationRef.current?.kill();
-      animationRef.current = null;
+      frame = requestAnimationFrame(animate);
     };
-  }, []);
 
-  // Pause / Resume
-  useEffect(() => {
-    if (!animationRef.current) return;
+    animate();
 
-    if (isHovered) {
-      animationRef.current.pause();
-    } else {
-      animationRef.current.play();
-    }
-  }, [isHovered]);
+    return () => cancelAnimationFrame(frame);
+  }, [paused]);
 
   return (
     <section
-      ref={sectionRef}
       id="testimonials"
-      className="relative py-24 md:py-32 bg-gradient-to-b from-background to-black/50 overflow-hidden"
+      className="relative min-h-screen overflow-hidden bg-black py-24 px-4 flex flex-col items-center justify-center"
     >
-      <div className="absolute top-20 left-10 opacity-5 pointer-events-none">
-        <Quote size={260} className="text-primary" />
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)]" />
+
+      {/* Quote Icon */}
+      <Quote
+        size={240}
+        className="absolute top-10 left-10 text-white/5 pointer-events-none"
+      />
+
+      {/* Heading */}
+      <div className="text-center mb-20 z-10">
+        <p className="uppercase tracking-[0.35em] text-sm text-zinc-400 mb-4">
+          Testimonials
+        </p>
+
+        <h2 className="text-5xl md:text-7xl font-bold text-white">
+          Client Reviews
+        </h2>
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <p className="testimonials-title text-primary uppercase tracking-[0.3em] text-sm mb-5">
-            Testimonials
-          </p>
-
-          <h2 className="testimonials-title text-5xl md:text-7xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            Client Reviews
-          </h2>
-        </div>
-
-        {/* Slider */}
+      {/* 3D Carousel */}
+      <div
+        className="relative w-full max-w-[1100px] h-[500px] flex items-center justify-center z-10"
+        style={{ perspective: "1800px" }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
         <div
-          className="overflow-hidden rounded-3xl border border-white/10 bg-black/20 backdrop-blur-xl py-10"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          ref={carouselRef}
+          className="relative w-[340px] h-[420px]"
+          style={{
+            transformStyle: "preserve-3d",
+          }}
         >
-          <motion.div
-            ref={marqueeRef}
-            className="flex gap-8"
-            style={{ width: "max-content" }}
-          >
-            {[...testimonials, ...testimonials].map((item, index) => (
+          {testimonials.map((item, i) => {
+            const rotate = i * 120;
+            return (
               <motion.div
-                key={index}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 250 }}
-                className="w-80 md:w-96 flex-shrink-0 rounded-[2rem] p-8 bg-white/5 border border-white/10"
+                key={item.id}
+                whileHover={{ scale: 1.04, y: -10 }}
+                transition={{ duration: 0.4 }}
+                className="absolute top-0 left-0 w-[340px] h-[420px] rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-[0_25px_60px_rgba(0,0,0,0.5)]"
+                style={{
+                  transform: `rotateY(${rotate}deg) translateZ(420px)`,
+                  backfaceVisibility: "hidden",
+                }}
               >
-                <div className="flex gap-1 mb-5">
-                  {[...Array(item.rating)].map((_, i) => (
+                {/* Stars */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(item.rating)].map((_, index) => (
                     <Star
-                      key={i}
+                      key={index}
                       size={18}
                       className="fill-yellow-400 text-yellow-400"
                     />
                   ))}
                 </div>
 
-                <p className="text-gray-300 leading-relaxed text-lg mb-8 italic min-h-[140px]">
+                {/* Content */}
+                <p className="text-zinc-300 leading-relaxed text-lg italic mb-8 min-h-[150px]">
                   "{item.content}"
                 </p>
 
-                <div className="flex items-center gap-4 border-t border-white/10 pt-5">
+                {/* User */}
+                <div className="mt-auto border-t border-white/10 pt-5 flex items-center gap-4">
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="w-14 h-14 rounded-xl object-cover"
+                    className="w-14 h-14 rounded-2xl object-cover"
                   />
 
                   <div>
                     <h4 className="text-white font-semibold">{item.name}</h4>
-                    <p className="text-primary text-sm">{item.role}</p>
+                    <p className="text-zinc-400 text-sm">{item.role}</p>
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="text-right text-xs text-white/60 px-6 pt-5">
-            {isHovered ? "⏸️ Paused" : "🔄 Auto Sliding"}
-          </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Bottom Text */}
+      <p className="mt-12 text-sm text-zinc-500 z-10">
+        {paused ? "⏸ Paused" : "🔄 Auto Rotating"}
+      </p>
     </section>
   );
-      }
+}
