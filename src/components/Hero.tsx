@@ -1,43 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgTextRef = useRef<HTMLDivElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
+  const bgTextRef = useRef(null);
+  const imageContainerRef = useRef(null);
+  const contentRef = useRef(null);
+
   const [isHovering, setIsHovering] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 150 };
+  const springConfig = { damping: 28, stiffness: 140 };
 
   const rotateX = useSpring(
-    useTransform(mouseY, [-0.5, 0.5], [10, -10]),
+    useTransform(mouseY, [-0.5, 0.5], [8, -8]),
     springConfig
   );
 
   const rotateY = useSpring(
-    useTransform(mouseX, [-0.5, 0.5], [-10, 10]),
+    useTransform(mouseX, [-0.5, 0.5], [-8, 8]),
     springConfig
   );
 
   const lightX = useSpring(
-    useTransform(mouseX, [-0.5, 0.5], [30, 70]),
+    useTransform(mouseX, [-0.5, 0.5], [35, 65]),
     springConfig
   );
 
   const lightY = useSpring(
-    useTransform(mouseY, [-0.5, 0.5], [30, 70]),
+    useTransform(mouseY, [-0.5, 0.5], [35, 65]),
     springConfig
   );
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e) => {
     if (!imageContainerRef.current) return;
 
     const rect = imageContainerRef.current.getBoundingClientRect();
@@ -49,62 +50,62 @@ export default function Hero() {
     mouseY.set(y);
   };
 
-  const handleMouseLeave = () => {
+  const resetMouse = () => {
     mouseX.set(0);
     mouseY.set(0);
     setIsHovering(false);
   };
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
   useEffect(() => {
+    ScrollTrigger.config({
+      ignoreMobileResize: true,
+    });
+
     const section = sectionRef.current;
     const content = contentRef.current;
 
     if (!section || !content) return;
 
     const ctx = gsap.context(() => {
+      // Entry animation
+      gsap.fromTo(
+        ".hero-stagger",
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          stagger: 0.08,
+          ease: "power4.out",
+          delay: 0.2,
+        }
+      );
+
+      // Smooth parallax
       if (bgTextRef.current) {
         gsap.to(bgTextRef.current, {
-          y: 100,
-          ease: 'none',
+          y: 60,
+          ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.5,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
           },
         });
       }
 
-      const heroElements = content.querySelectorAll('.hero-stagger');
-
-      gsap.fromTo(
-        heroElements,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: 'expo.out',
-          stagger: 0.1,
-          delay: 0.3,
-        }
-      );
-
-      const floatingElements = section.querySelectorAll('.floating-element');
-
-      floatingElements.forEach((el, i) => {
+      // Floating elements smoother
+      gsap.utils.toArray(".floating-element").forEach((el, i) => {
         gsap.to(el, {
-          y: -40 * (i + 1),
-          ease: 'none',
+          y: -20 * (i + 1),
+          ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
           },
         });
       });
@@ -116,64 +117,65 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center bg-background pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden"
+      className="relative min-h-screen h-auto flex items-center justify-center overflow-hidden bg-background pt-28 pb-20 md:pt-36 md:pb-28"
+      style={{
+        willChange: "transform",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+      }}
     >
-      {/* Slight Dark Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/10" />
 
-      {/* Ambient Glow */}
+      {/* Glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-20 blur-[90px] pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(255,61,0,0.4) 0%, rgba(0,255,136,0.2) 50%, transparent 70%)',
-          zIndex: 1,
+            "radial-gradient(circle, rgba(255,61,0,.35) 0%, rgba(0,255,136,.15) 45%, transparent 70%)",
         }}
       />
 
       {/* Content */}
       <div
         ref={contentRef}
-        className="container relative flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24"
-        style={{ zIndex: 10 }}
+        className="container relative z-10 flex flex-col lg:flex-row items-center justify-between gap-14 lg:gap-20 px-4"
       >
         {/* Left */}
         <div className="flex-1 max-w-2xl text-center lg:text-left">
-          <p className="hero-stagger text-primary font-medium tracking-[0.4em] uppercase text-xs md:text-sm mb-6">
+          <p className="hero-stagger text-primary uppercase tracking-[0.35em] text-xs md:text-sm mb-5">
             Since 2005
           </p>
 
-          <h1 className="hero-stagger font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tight mb-6">
+          <h1 className="hero-stagger text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] font-bold mb-6">
             I'm Vijay
           </h1>
 
-          <p className="hero-stagger text-lg md:text-xl lg:text-2xl text-muted font-light tracking-wide opacity-70 mb-8">
+          <p className="hero-stagger text-lg md:text-xl text-white/70 mb-8">
             Full Stack Developer — UI Engineer — Problem Solver
           </p>
 
-          <h2 className="hero-stagger font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12">
+          <h2 className="hero-stagger text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-10">
             I Build Scalable
             <br />
-            <span className="text-outline-primary">
-              Digital Experiences
-            </span>
+            <span className="text-primary">Digital Experiences</span>
           </h2>
 
-          <div className="hero-stagger flex flex-wrap justify-center lg:justify-start gap-6">
+          <div className="hero-stagger flex flex-wrap justify-center lg:justify-start gap-5">
             <motion.a
               href="#projects"
-              whileHover={{ scale: 0.95 }}
-              whileTap={{ scale: 0.85 }}
-              className="px-10 py-5 bg-primary text-background font-bold rounded-full tracking-widest uppercase text-xs md:text-sm"
+              whileTap={{ scale: 0.94 }}
+              whileHover={{ scale: 1.03 }}
+              className="px-9 py-4 rounded-full bg-primary text-black font-semibold uppercase text-sm"
             >
               View Work
             </motion.a>
 
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 border-2 border-foreground text-foreground font-bold rounded-full tracking-widest uppercase text-xs md:text-sm hover:bg-foreground hover:text-background transition-all"
+              whileTap={{ scale: 0.94 }}
+              whileHover={{ scale: 1.03 }}
+              className="px-9 py-4 rounded-full border border-white text-white font-semibold uppercase text-sm hover:bg-white hover:text-black transition-all"
             >
               Hire Me
             </motion.a>
@@ -185,36 +187,37 @@ export default function Hero() {
           <div
             ref={imageContainerRef}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            onMouseEnter={handleMouseEnter}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={resetMouse}
             className="relative"
-            style={{ perspective: '2000px' }}
+            style={{ perspective: "1800px" }}
           >
             <motion.div
               style={{
                 rotateX,
                 rotateY,
-                transformStyle: 'preserve-3d',
+                transformStyle: "preserve-3d",
+                willChange: "transform",
               }}
-              className="relative"
             >
               <motion.div
-                className="absolute -inset-10 rounded-[3rem] opacity-30 blur-3xl pointer-events-none"
+                className="absolute -inset-8 rounded-[3rem] opacity-25 blur-2xl pointer-events-none"
                 style={{
                   background: `radial-gradient(circle at ${lightX}% ${lightY}%, ${
-                    isHovering ? '#ff3d00' : '#00ff88'
+                    isHovering ? "#ff3d00" : "#00ff88"
                   } 0%, transparent 70%)`,
                 }}
               />
 
               <div
-                className="relative w-[300px] h-[400px] sm:w-[340px] sm:h-[460px] md:w-[400px] md:h-[540px] rounded-[3rem] overflow-hidden border border-white/10"
-                style={{ transform: 'translateZ(50px)' }}
+                className="relative w-[300px] h-[400px] sm:w-[340px] sm:h-[460px] md:w-[390px] md:h-[520px] rounded-[3rem] overflow-hidden border border-white/10"
+                style={{ transform: "translateZ(40px)" }}
               >
                 <img
                   src="/upload_1.png"
                   alt="Vijay"
-                  className="w-full h-80px object-cover"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  loading="eager"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -225,4 +228,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+          }
