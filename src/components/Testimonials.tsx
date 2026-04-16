@@ -42,7 +42,7 @@ const testimonials = [
 export default function Testimonials() {
   const sectionRef = useRef(null);
   const marqueeRef = useRef(null);
-  const animationRef = useRef(null);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -72,7 +72,7 @@ export default function Testimonials() {
     return () => ctx.revert();
   }, []);
 
-  // Auto marquee
+  // Slider animation
   useEffect(() => {
     const marquee = marqueeRef.current;
     if (!marquee) return;
@@ -86,17 +86,18 @@ export default function Testimonials() {
 
     return () => {
       animationRef.current?.kill();
+      animationRef.current = null;
     };
   }, []);
 
-  // Pause / Resume on hover
+  // Pause / Resume
   useEffect(() => {
     if (!animationRef.current) return;
 
     if (isHovered) {
       animationRef.current.pause();
     } else {
-      animationRef.current.resume();
+      animationRef.current.play();
     }
   }, [isHovered]);
 
@@ -106,7 +107,6 @@ export default function Testimonials() {
       id="testimonials"
       className="relative py-24 md:py-32 bg-gradient-to-b from-background to-black/50 overflow-hidden"
     >
-      {/* Background */}
       <div className="absolute top-20 left-10 opacity-5 pointer-events-none">
         <Quote size={260} className="text-primary" />
       </div>
@@ -123,7 +123,7 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Cards Slider */}
+        {/* Slider */}
         <div
           className="overflow-hidden rounded-3xl border border-white/10 bg-black/20 backdrop-blur-xl py-10"
           onMouseEnter={() => setIsHovered(true)}
@@ -137,14 +137,10 @@ export default function Testimonials() {
             {[...testimonials, ...testimonials].map((item, index) => (
               <motion.div
                 key={index}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 250 }}
                 className="w-80 md:w-96 flex-shrink-0 rounded-[2rem] p-8 bg-white/5 border border-white/10"
               >
-                {/* Stars */}
                 <div className="flex gap-1 mb-5">
                   {[...Array(item.rating)].map((_, i) => (
                     <Star
@@ -155,12 +151,10 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                {/* Content */}
                 <p className="text-gray-300 leading-relaxed text-lg mb-8 italic min-h-[140px]">
                   "{item.content}"
                 </p>
 
-                {/* User */}
                 <div className="flex items-center gap-4 border-t border-white/10 pt-5">
                   <img
                     src={item.avatar}
@@ -177,7 +171,6 @@ export default function Testimonials() {
             ))}
           </motion.div>
 
-          {/* Status */}
           <div className="text-right text-xs text-white/60 px-6 pt-5">
             {isHovered ? "⏸️ Paused" : "🔄 Auto Sliding"}
           </div>
@@ -185,4 +178,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-    }
+      }
