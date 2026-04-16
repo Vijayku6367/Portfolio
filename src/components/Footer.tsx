@@ -1,5 +1,11 @@
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, type LucideIcon } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  ArrowUpRight,
+  type LucideIcon,
+} from "lucide-react";
 
 interface NavLink {
   name: string;
@@ -13,97 +19,105 @@ interface SocialLink {
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Home', href: '#home' },
-  { name: 'Works', href: '#projects' },
-  { name: 'About', href: '#about' },
+  { name: "Home", href: "#home" },
+  { name: "Works", href: "#works" },
+  { name: "About", href: "#about" },
 ];
 
 const socialLinks: SocialLink[] = [
-  { name: 'GitHub', icon: Github, href: 'https://github.com/Vijayku6367' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/vijayeth' },
-  { name: 'Twitter', icon: Twitter, href: 'https://x.com/Lakieth0' },
+  {
+    name: "GitHub",
+    icon: Github,
+    href: "https://github.com/Vijayku6367",
+  },
+  {
+    name: "LinkedIn",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/vijayeth",
+  },
+  {
+    name: "Twitter",
+    icon: Twitter,
+    href: "https://x.com/Lakieth0",
+  },
 ];
-
-function ArrowIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="7" y1="17" x2="17" y2="7" />
-      <polyline points="7 7 17 7 17 17" />
-    </svg>
-  );
-}
 
 export default function Footer() {
   return (
-    <footer className="px-4 pb-6 pt-0 bg-transparent">
+    <footer className="w-full px-0 pt-10 pb-0 bg-[#f5f5f5]">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="rounded-[2rem] bg-secondary px-6 py-14 flex flex-col items-center gap-8 max-w-2xl mx-auto"
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="w-full bg-[#050813] rounded-t-[70px] px-6 pt-14 pb-10"
       >
-        <p className="text-muted text-sm text-center leading-relaxed">
-          Available for freelance work, contracts, and full time opportunities.
+        {/* Top Text */}
+        <p className="text-center text-white/90 text-[18px] leading-[1.3] font-medium max-w-[320px] mx-auto">
+          Available for freelance work, contracts, and full time
+          opportunities.
         </p>
 
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground text-center leading-tight">
-          {"Let\u2019s work together"}
+        {/* Heading */}
+        <h2 className="text-center text-white font-bold text-[54px] leading-[0.95] mt-8 tracking-[-2px]">
+          Let’s work together
         </h2>
 
-        <p className="text-foreground font-semibold text-base tracking-wide">
+        {/* Email */}
+        <p className="text-center text-white font-semibold text-[20px] mt-8">
           vijay.developer@gmail.com
         </p>
 
+        {/* Contact Button */}
         <a
           href="mailto:vijay.developer@gmail.com"
-          className="flex items-center w-full bg-foreground text-background rounded-full px-6 py-4 font-semibold text-base hover:opacity-90 transition-opacity"
+          className="mt-8 w-full h-[74px] bg-[#f4f4f4] rounded-full flex items-center px-6"
         >
-          <span className="flex-1 text-center">Contact Me</span>
-          <span className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 text-foreground">
-            <ArrowIcon />
+          <span className="flex-1 text-center text-[#111111] font-semibold text-[22px]">
+            Contact Me
+          </span>
+
+          <span className="w-[52px] h-[52px] rounded-full bg-[#2d3343] flex items-center justify-center text-white">
+            <ArrowUpRight size={26} strokeWidth={2.3} />
           </span>
         </a>
 
-        <div className="flex items-center gap-8 mt-2">
-          {navLinks.map((link) => (
+        {/* Nav Links */}
+        <div className="flex justify-center gap-10 mt-14">
+          {navLinks.map((item) => (
             <a
-              key={link.name}
-              href={link.href}
-              className="text-foreground text-sm font-medium hover:text-muted transition-colors"
+              key={item.name}
+              href={item.href}
+              className="text-white text-[18px] font-medium"
             >
-              {link.name}
+              {item.name}
             </a>
           ))}
         </div>
 
-        <div className="flex flex-col w-full gap-3">
-          {socialLinks.map((social, i) => {
-            const Icon = social.icon;
+        {/* Social Buttons */}
+        <div className="mt-10 flex flex-col gap-4">
+          {socialLinks.map((item, i) => {
+            const Icon = item.icon;
+
             return (
               <motion.a
-                key={social.name}
-                href={social.href}
+                key={item.name}
+                href={item.href}
                 target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
+                rel="noreferrer"
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-4 bg-card rounded-2xl px-5 py-4 hover:opacity-80 transition-opacity"
+                transition={{ delay: i * 0.12 }}
+                viewport={{ once: true }}
+                className="w-full h-[82px] bg-[#2d3343] rounded-[24px] flex items-center px-7"
               >
-                <span className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-                  <Icon size={20} className="text-foreground" />
-                </span>
-                <span className="flex-1 text-center font-bold text-foreground text-base">
-                  {social.name}
+                <div className="w-[44px] h-[44px] rounded-xl bg-white flex items-center justify-center text-[#2d3343]">
+                  <Icon size={24} />
+                </div>
+
+                <span className="flex-1 text-center text-white font-semibold text-[22px] pr-10">
+                  {item.name}
                 </span>
               </motion.a>
             );
