@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -44,6 +44,32 @@ const testimonials = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    y: 30,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 100,
+    },
+  },
+};
+
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const [current, setCurrent] = useState(0);
@@ -83,47 +109,19 @@ export default function Testimonials() {
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.18,
-      },
-    },
-  };
-
-  const cardVariants = {
-  hidden: {
-    y: 30,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring" as const,
-      damping: 12,
-      stiffness: 100,
-    },
-  },
-};
   return (
     <section
       ref={sectionRef}
       id="testimonials"
       className="relative py-24 md:py-32 bg-background"
     >
-      {/* Background Quote */}
-      <div
-        className="absolute top-24 left-10 opacity-5 pointer-events-none overflow-hidden"
-        style={{ zIndex: 0 }}
-      >
+      {/* Background Icon */}
+      <div className="absolute top-24 left-10 opacity-5 pointer-events-none">
         <Quote size={400} />
       </div>
 
-      <div className="container relative" style={{ zIndex: 1 }}>
-        {/* Header */}
+      <div className="container relative z-10">
+        {/* Heading */}
         <div className="mb-20 md:mb-28 text-center md:text-left">
           <p className="testimonials-title text-primary font-medium tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
             Testimonials
@@ -134,27 +132,28 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Animated Cards */}
+        {/* Cards with Added Animation */}
         <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 mb-20 md:mb-28"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 mb-20 md:mb-28"
+          viewport={{ once: true, amount: 0.2 }}
         >
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
               variants={cardVariants}
               whileHover={{
-                y: -8,
+                y: -6,
+                scale: 1.02,
                 transition: {
                   type: "spring",
-                  stiffness: 350,
-                  damping: 14,
+                  stiffness: 300,
+                  damping: 18,
                 },
               }}
-              className="testimonial-card glass rounded-[2.5rem] p-8 md:p-10 relative flex flex-col justify-between h-full"
+              className="glass rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between h-full"
             >
               <div>
                 <div className="flex gap-1 mb-8">
@@ -201,10 +200,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
-              transition={{
-                duration: 0.6,
-                ease: "circOut",
-              }}
+              transition={{ duration: 0.6 }}
               className="glass rounded-[3rem] p-10 md:p-20 text-center"
             >
               <img
