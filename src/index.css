@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 @theme {
-  --color-background: #0a0a0f;
-  --color-foreground: #ffffff;
-  --color-primary: #7b2fff;
-  --color-secondary: #111118;
-  --color-accent: #9d5cff;
-  --color-muted: #b0aac8;
-  --color-card: #1a1a2e;
-  --color-border: #2e2e4a;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
+  --color-background: #f5f0e8;
+  --color-foreground: #0d0d0d;
+  --color-primary: #0d0d0d;
+  --color-secondary: #ede8df;
+  --color-accent: #4a4a4a;
+  --color-muted: #8a8580;
+  --color-card: #eae4d8;
+  --color-border: #d6d0c4;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 /* Base HTML/Body styles */
